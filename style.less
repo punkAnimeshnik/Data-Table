@@ -1,0 +1,63 @@
+body{
+  background-color: #f0f0f0;
+
+  .date-table__body{
+    width:100%;
+
+    box-shadow: 0 0 1px rgba(0,0,0,0.5);
+    border-radius: 5px;
+
+  }
+  .body{
+    background-color: #ffffff;
+    .body__head{
+      padding: 1px 25px;
+      color: #464457;
+      border-bottom: 2px solid #f0f0f0;
+    }
+    .body__main{
+      padding: 25px 25px 15px;
+      .body__table{
+        table{
+          width: 100%;
+        }
+        table, tr, th, td{
+          border: 2px solid #ebeded;
+          border-collapse: collapse;
+          text-align: left;
+          padding: 10px 20px;
+          font-size: 18px;
+        }
+      }
+    }
+    .body__foot{
+      padding: 10px 0px;
+     display: flex;
+      justify-content: space-between;
+      .body__limit{
+        select{
+          color:#646c9a;
+          font-size: 14pt;
+          padding: 5px;
+        }
+
+      }
+      .body__page-table{
+        .body__link{
+          text-decoration: none;
+          color: #5867dd;
+          width: 25px;
+          margin: 1px;
+          padding: 5px 10px;
+          font-size: 14pt;
+          border: 1px solid #5867dd;
+        }
+        .body__link_active{
+          color: #ffffff;
+          background-color: #5867dd;
+        }
+      }
+    }
+
+  }
+}
