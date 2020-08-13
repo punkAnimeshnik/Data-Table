@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Date Table</title>
     <link rel="stylesheet" href="style.css">
+
+
 </head>
 <body>
 <div class="date-table">
@@ -14,6 +16,7 @@
             </div>
         </div>
         <div class="body__main">
+            <div id="app">
             <div class="body__table">
                 <table>
                     <tr>
@@ -22,65 +25,11 @@
                         <th>Город</th>
                         <th>Номер отделения</th>
                     </tr>
-                    <tr>
-                        <td>e68be3b9-ca66-11e9-b0c5-005056b24375</td>
-                        <td>Пункт приймання-видачі (до 30 кг): вул. Андрія Бобира, 13</td>
-                        <td>Ничипорівка</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>230b68fb-981a-11e9-898c-005056b24375</td>
-                        <td>Пункт приймання-видачі (до 30 кг): вул. Київська, 5А</td>
-                        <td>Перемога</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>03e49b5a-8159-11e9-898c-005056b24375</td>
-                        <td>Пункт приймання-видачі (до 30 кг): вул. Центральна, 12/1</td>
-                        <td>Велика Солона</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>e68be3b9-ca66-11e9-b0c5-005056b24375</td>
-                        <td>Пункт приймання-видачі (до 30 кг): вул. Андрія Бобира, 13</td>
-                        <td>Ничипорівка</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>230b68fb-981a-11e9-898c-005056b24375</td>
-                        <td>Пункт приймання-видачі (до 30 кг): вул. Київська, 5А</td>
-                        <td>Перемога</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>03e49b5a-8159-11e9-898c-005056b24375</td>
-                        <td>Пункт приймання-видачі (до 30 кг): вул. Центральна, 12/1</td>
-                        <td>Велика Солона</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>e68be3b9-ca66-11e9-b0c5-005056b24375</td>
-                        <td>Пункт приймання-видачі (до 30 кг): вул. Андрія Бобира, 13</td>
-                        <td>Ничипорівка</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>230b68fb-981a-11e9-898c-005056b24375</td>
-                        <td>Пункт приймання-видачі (до 30 кг): вул. Київська, 5А</td>
-                        <td>Перемога</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>03e49b5a-8159-11e9-898c-005056b24375</td>
-                        <td>Пункт приймання-видачі (до 30 кг): вул. Центральна, 12/1</td>
-                        <td>Велика Солона</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>03e49b5a-8159-11e9-898c-005056b24375</td>
-                        <td>Пункт приймання-видачі (до 30 кг): вул. Центральна, 12/1</td>
-                        <td>Велика Солона</td>
-                        <td>1</td>
+                    <tr v-for="postOffice in postOffices.slice(start,end)">
+                        <td>{{postOffice.ref}}</td>
+                        <td>{{postOffice.name}}</td>
+                        <td>{{postOffice.city}}</td>
+                        <td>{{postOffice.number}}</td>
                     </tr>
                 </table>
 
@@ -88,34 +37,25 @@
 
         <div class="body__foot">
             <div class="body__limit">
-                <select>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
+                <select v-model.number="limit" v-on:click="Limit()" >
+                    <option v-for="i in 100">{{i}}</option>
                 </select>
             </div>
-            <div class="body__page-table">
-                <a href="#" class="body__link body__link_active">1</a>
-                <a href="#" class="body__link">2</a>
-                <a href="#" class="body__link">3</a>
-                <a href="#" class="body__link">4</a>
-                <a href="#" class="body__link">5</a>
-                <a href="#" class="body__link">6</a>
-                <a href="#" class="body__link">7</a>
-                <a href="#" class="body__link">8</a>
-                <a href="#" class="body__link">9</a>
-                <a href="#" class="body__link">10</a>
+            <div class="body__page-table" >
+                <a href="#" class="body__link" v-if="hasFirst()" @click="nextPage(1)">1</a>
+                <a href="#" class="ellipsis" v-if="hasFirst()" @click="nextPage(1)">...</a>
+                <a href="#" :class="{current : current == page}" class="body__link" v-for="page in pages" @click="nextPage(page)" >{{page}}</a>
+                <a href="#" class="ellipsis" v-if="hasLast()" @click="nextPage(totalPage)">...</a>
+                <a href="#" class="body__link" v-if="hasLast()" @click="nextPage(totalPage)">{{totalPage}}</a>
             </div>
-        </div>
+        </div></div>
     </div>
     </div>
 </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

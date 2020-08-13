@@ -27,7 +27,7 @@ body .body .body__main .body__table td {
   border: 2px solid #ebeded;
   border-collapse: collapse;
   text-align: left;
-  padding: 10px 20px;
+  padding: 5px 10px;
   font-size: 18px;
 }
 body .body .body__foot {
@@ -49,7 +49,13 @@ body .body .body__foot .body__page-table .body__link {
   font-size: 14pt;
   border: 1px solid #5867dd;
 }
-body .body .body__foot .body__page-table .body__link_active {
+body .body .body__foot .body__page-table .ellipsis {
+  text-decoration: none;
+  color: #5867dd;
+  font-size: 14pt;
+}
+body .body .body__foot .body__page-table body__link:hover,
+body .body .body__foot .body__page-table .current {
   color: #ffffff;
   background-color: #5867dd;
 }
